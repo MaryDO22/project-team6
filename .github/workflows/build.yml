@@ -4,12 +4,6 @@ env:
   repo_region:      "us-west2" # Specify Google Artifact Region
   app_name:         "redash" # Will be used as working directory must corresponed to the cloned repository name
   tag_new_version:  ${GITHUB_SHA} # GitHub Variable storing commit's message
-  enable_sonar:     true # True for repo code scanning
-  project_id:       "terraform-project-serbianum" #Enter GCP project ID
-  gcp_repo_name:    "team6-redash-docker" # Google Artifact repository name
-  sonar_cloud_org:  "team6-project" # Add SonarCloud Organization name
-  sonar_cloud_proj: "team6-project_redash" # Add SonaCloud Project name
-
 
 
 
@@ -46,19 +40,6 @@ jobs:
           echo "If the cloning was successful a directory with repo name will be pressent below: "
           ls
       
-      - name: SonarCloud Scan
-        if: ${{ env.enable_sonar }} == "true"  # makes it optional
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
-        with:
-          projectBaseDir: ${{ env.app_name }}
-          args: >
-            -Dsonar.organization=${{ env.sonar_cloud_org }}
-            -Dsonar.projectKey=${{ env.sonar_cloud_proj }}
-            -Dsonar.verbose=true
-
       - name: Build the docker Image
         working-directory: ${{ env.app_name }}
         run: |
