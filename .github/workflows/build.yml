@@ -50,12 +50,13 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: sonarcloud.io
         with:
-          projectBaseDir: ${{ env.app_name }}
+          projectBaseDir: 
           args: >
-            -Dsonar.organization=${{ env.sonar_cloud_org }}
-            -Dsonar.projectKey=${{ env.sonar_cloud_proj }}
-            -Dsonar.verbose=true
-
+            sonar-scanner \
+              -Dsonar.organization=marydo22 \
+              -Dsonar.projectKey=marydo22_project-scan \
+              -Dsonar.sources=. \
+              -Dsonar.host.url=https://sonarcloud.io
 
       - name: Build the docker Image
         working-directory: ${{ env.app_name }}
