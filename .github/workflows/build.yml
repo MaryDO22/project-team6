@@ -7,8 +7,8 @@ env:
   enable_sonar:     true # True for repo code scanning
   project_id:       "terraform-project-kozak" #Enter GCP project ID
   gcp_repo_name:    "team6-redash-docker" # Google Artifact repository name
-  sonar_cloud_org:  "team6-project" # Add SonarCloud Organization name
-  sonar_cloud_proj: "team6-project_redash" # Add SonaCloud Project name
+  sonar_cloud_org:  "MaryDO22" # Add SonarCloud Organization name
+  sonar_cloud_proj: "project-scan" # Add SonaCloud Project name
 
 # This is a basic workflow to help you get started with Actions
 
@@ -48,7 +48,7 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
+          SONAR_HOST_URL: sonarcloud.io
         with:
           projectBaseDir: ${{ env.app_name }}
           args: >
