@@ -4,7 +4,9 @@ env:
   repo_region:      "us-west2" # Specify Google Artifact Region
   app_name:         "redash" # Will be used as working directory must corresponed to the cloned repository name
   tag_new_version:  ${GITHUB_SHA} # GitHub Variable storing commit's message
-
+  enable_sonar:     true # True for repo code scanning
+  project_id:       "${{ secrets.PROJECT_ID }}" #Enter GCP project ID
+  gcp_repo_name:    "team6-redash-docker" # Google Artifact repository name
 
 
 # This is a basic workflow to help you get started with Actions
