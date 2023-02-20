@@ -46,9 +46,6 @@ jobs:
       - name: SonarCloud Scan
         if: ${{ env.enable_sonar }} == "true"  # makes it optional
         uses: sonarsource/sonarcloud-github-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: sonarcloud.io
         with:
           projectBaseDir: 
           args: >
