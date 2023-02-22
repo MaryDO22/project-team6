@@ -46,14 +46,16 @@ jobs:
       - name: SonarCloud Scan
         if: ${{ env.enable_sonar }} == "true"  # makes it optional
         uses: sonarsource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: sonarcloud.io
         with:
-          projectBaseDir: 
+          projectBaseDir: ${{ env.app_name }}
           args: >
-            sonar-scanner \
-              -Dsonar.organization=marydo22 \
-              -Dsonar.projectKey=marydo22_project-scan \
-              -Dsonar.sources=. \
-              -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.organization=${{ env.sonar_cloud_org }}
+            -Dsonar.projectKey=${{ env.sonar_cloud_proj }}
+            -Dsonar.verbose=true
+
 
       - name: Build the docker Image
         working-directory: ${{ env.app_name }}
