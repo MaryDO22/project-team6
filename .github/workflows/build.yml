@@ -52,8 +52,8 @@ jobs:
         with:
           projectBaseDir: ${{ env.app_name }}
           args: >
-            -Dsonar.organization=${{ env.sonar_cloud_org }}
-            -Dsonar.projectKey=${{ env.sonar_cloud_proj }}
+            -Dsonar.organization=MaryDO22
+            -Dsonar.projectKey=project-scan
             -Dsonar.verbose=true
 
 
